@@ -1,0 +1,7 @@
+<p>products-chair works!</p>
+<div class="container">
+    <p id="name">{{name}}</p>
+    <p id="price">{{price}} pln</p>
+    <img [src]="prodImage" alt="eee">
+    <button id="buyButton" (click)="buyProduct($event)" [disabled] = "buy">{{buy ? 'kupione' : 'kup'}}</button>
+</div>

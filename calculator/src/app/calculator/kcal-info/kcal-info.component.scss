@@ -1,0 +1,46 @@
+#dailyAmount{
+    width: 80%;
+}
+
+#addProduct{
+    width: 60%;
+    margin-right: 6px;
+}
+
+#addCalories{
+    width: 19%;
+}
+
+#kcalProgressBar{
+    height: 2%;
+    width: 100%;
+    background: gray;
+}
+
+#greenBar{
+    height: 10px;
+}
+
+.alertToggleOn{
+    display: block;
+    color: red;
+}
+
+.alertToggleOff{
+    display: none;
+}
+.marginToBottom{
+    margin-bottom: 10px;
+}
+
+.kcalInfoOn{
+    display: block;
+}
+
+.kcalInfoOff{
+    display: none;
+}
+
+.even-item{
+    background: rgb(170, 170, 170);
+}

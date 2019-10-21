@@ -1,0 +1,38 @@
+<p>kcal-info works!</p>
+
+<h4 id="alertOver" [ngClass]="alertItems">Przekroczono limit kalorii!</h4>
+
+<div id="kcalProgressBar" class="marginToBottom">
+    <div id="greenBar" [ngStyle]="progressBarItems"></div>
+</div>
+
+<input type="text" id="dailyAmount" class="marginToBottom" placeholder="Wpisz ilość dziennego zapotrzebowania KCAL..." [(ngModel)]="dayCalories" [disabled]="turnOffButton">
+<input type="submit" id="dailyAmountButton" class="marginToBottom" (click)="addCalories();" [disabled]="turnOffButton"> 
+<br>
+<input type="text" id="addProduct" class="marginToBottom" placeholder="Wpisz nazwę produktu.." [(ngModel)]="prodName">
+<input type="text" id="addCalories" class="marginToBottom" placeholder="Podaj liczbę kalorii" [(ngModel)]="prodCalories">
+<input type="submit" id="AddProductButton" class="marginToBottom" (click)="addProduct($event);">
+<br>
+
+<select [(ngModel)]="prodValue" id="productsOptions">
+    <option value="{{productsList[i].calories}}" *ngFor="let product of productsList; index as i">{{productsList[i].name}}</option>
+</select>
+<input type="submit" id="addProductsList" class="marginToBottom" (click)="addProductList($event);">
+
+<h3 *ngIf="dayCalories">Twoje zapotrzebowanie kaloryczne wynosi {{dayCalories}}</h3>
+<div id="addedProducts">
+    <h4 id="productsTitle">Twoje produkty łacznie KCAL: {{sumCalories}}</h4>
+</div>
+
+<!-- koncept *ngFor -->
+<div class="productsItems" *ngFor="let product of productsArray; odd as isOdd; index as i">
+    <p [class.even-item]="isOdd">{{product.name}} ma {{product.calories}} KCAL</p>
+</div>
+
+<app-chart [pieChartData]="pieChartKcal" [pieChartLabels]="pieChartNames">
+
+</app-chart>
+
+
+
+
