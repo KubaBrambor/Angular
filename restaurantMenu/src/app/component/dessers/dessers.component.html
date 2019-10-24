@@ -1,0 +1,10 @@
+<div class="mainContainer" *ngFor="let desser of dessersMenu, index as i">
+    <p class="title">{{desser.$name}}</p>
+    <p>ID: {{desser.$id}}</p>
+    <p>Cena {{desser.$price}} zł</p>
+    <button class="button" (click)="desser.$hideFunc()">Rozwiń</button>
+    <div class="hide" *ngIf="desser.$hide">
+        <p>Skład: {{desser.$ingridients}}</p>
+    </div>
+</div>
+

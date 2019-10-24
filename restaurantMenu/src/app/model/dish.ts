@@ -2,6 +2,7 @@ export class Dish {
     private id:number;
     private name:string;
     private price:number;
+    private hide:boolean = false;
 
     constructor(id, name, price){
         this.id = id,
@@ -18,6 +19,9 @@ export class Dish {
     public get $price(){
         return this.price;
     }
+    public get $hide(){
+        return this.hide;
+    }
 
     public set $id(value:number){
         this.id = value;
@@ -27,5 +31,10 @@ export class Dish {
     }
     public set $price(value:number){
         this.price = value;
+    }
+
+    public $hideFunc():void{
+        this.hide = !this.hide;
+        console.log(this.hide);
     }
 }

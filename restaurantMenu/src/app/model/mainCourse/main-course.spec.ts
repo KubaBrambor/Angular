@@ -1,7 +1,7 @@
-import { MainCourse } from './main-course';
+// import { MainCourse } from './main-course';
 
-describe('MainCourse', () => {
-  it('should create an instance', () => {
-    expect(new MainCourse()).toBeTruthy();
-  });
-});
+// describe('MainCourse', () => {
+//   it('should create an instance', () => {
+//     expect(new MainCourse()).toBeTruthy();
+//   });
+// });
