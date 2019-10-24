@@ -1,4 +1,4 @@
-.mainContainer{
+#mainContainer{
     border: solid 5px rgb(238, 232, 208);
     border-radius: 5px;
     margin: 10px 10px 10px 10px;
@@ -9,20 +9,20 @@
     background: cornsilk;
 }
 
-.title{
+#title{
     font-size:20px;
     font-weight: bolder;
     text-align: center;
 }
 
-.button{
+#button{
     border: solid 2px rgba(100, 148, 237, 0.795);
     border-radius: 2px;
     background: cornflowerblue;
     color: whitesmoke;
 }
 
-.button:hover{
+#button:hover{
     background: rgb(119, 166, 253);
     border: solid 2px rgb(119, 166, 253);
 }

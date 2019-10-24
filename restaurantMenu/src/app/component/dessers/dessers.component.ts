@@ -15,7 +15,6 @@ export class DessersComponent implements OnInit {
 
   ngOnInit() {
     this.getDessers();
-    console.log(this.dessersMenu[0])
   }
 
   getDessers():void{

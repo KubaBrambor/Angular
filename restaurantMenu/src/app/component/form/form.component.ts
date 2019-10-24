@@ -3,7 +3,7 @@ import { MainCourse } from '../../model/mainCourse/main-course';
 
 
 @Component({
-  selector: 'form',
+  selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })

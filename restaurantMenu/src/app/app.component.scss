@@ -1,9 +1,30 @@
-.image{
-    width: 200px;
-    height: 200px;
+@mixin center-element {
+    margin-left: auto;
+    margin-right: auto;
 }
 
-// .imageBox{
-//     margin-left:auto;
-//     margin-right: auto;
-// }
+#logoImage {
+    @include center-element;
+    width: 100%;
+    width: 200px;
+    border-radius: 70px;
+    display: block;
+    
+}
+
+#mainContent {
+    @include center-element;
+    width: 80%;
+}
+
+#mainCourse {
+    float: left;
+}
+
+#drinks {
+    float: left;
+}
+
+#dessers {
+    display: inline-block;
+}

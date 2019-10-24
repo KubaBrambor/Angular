@@ -28,6 +28,4 @@ export class ServiceService {
   getDesser():Desser[] {
     return desserMenu;
   }
-
-
 }

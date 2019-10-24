@@ -1,9 +1,9 @@
-<div class="mainContainer" *ngFor="let desser of dessersMenu, index as i">
-    <p class="title">{{desser.$name}}</p>
+<div id="mainContainer" *ngFor="let desser of dessersMenu, index as i">
+    <p id="title">{{desser.$name}}</p>
     <p>ID: {{desser.$id}}</p>
     <p>Cena {{desser.$price}} zł</p>
-    <button class="button" (click)="desser.$hideFunc()">Rozwiń</button>
-    <div class="hide" *ngIf="desser.$hide">
+    <button id="button" (click)="desser.$hideFunc()">Rozwiń</button>
+    <div id="hide" *ngIf="desser.$hide">
         <p>Skład: {{desser.$ingridients}}</p>
     </div>
 </div>
