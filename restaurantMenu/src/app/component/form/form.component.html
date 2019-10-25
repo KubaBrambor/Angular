@@ -1,4 +1,14 @@
 <h1 id="title">Formualrz dodawania potraw</h1>
-<form>
-    <input>
-</form>
+<div class="form-group">
+    <form> 
+        <div class="dish-name">
+            <input type="text"
+            placeholder="Wpisz potrawę"
+            name="newDish"
+            [(ngModel)]="newDish.name">
+        </div>
+    </form>
+    <button (click)="newDish.name='test'">Click</button>
+</div>
+
+<h4>Nazwa dania to {{newDish.name}}</h4>

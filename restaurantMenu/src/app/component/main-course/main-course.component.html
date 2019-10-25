@@ -1,10 +1,14 @@
 <div class="mainContainer" *ngFor="let course of mainCourseMenu, index as i">
+    <div class="dish" *ngIf="!course.$hide">    
         <p class="title">{{course.$name}}</p>
-        <p id="id">ID: {{course.$id}}</p>
-        <p id="price">Cena {{course.$price}} zł</p>
-        <button id="button" (click)="course.$hideFunc($event)">Rozwiń</button>
-        <div id="hide" *ngIf="course.$hide">
-            <p id="ingridients">Skład: {{course.$ingridients}}</p>
-            <p id="alergens">Alergeny: {{course.$alergens}}</p>
-        </div>
+        <p class="id">ID: {{course.$id}}</p>
+        <p class="price">Cena {{course.$price}} zł</p>
+        <button class="button" (click)="course.$hideFunc($event)">Rozwiń</button>
+    </div>
+    
+    <div class="hide" *ngIf="course.$hide">
+        <p class="ingridients">Skład: {{course.$ingridients}}</p>
+        <p class="alergens">Alergeny: {{course.$alergens}}</p>
+        <button class="backButton" (click)="course.$hideFunc($event)">Wróć</button>
+    </div>
 </div>

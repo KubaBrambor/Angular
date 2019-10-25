@@ -1,3 +1,5 @@
+@import './data/styleVariables';
+
 @mixin center-element {
     margin-left: auto;
     margin-right: auto;
@@ -5,16 +7,17 @@
 
 #logoImage {
     @include center-element;
-    width: 100%;
     width: 200px;
-    border-radius: 70px;
+    border-radius: 90px;
     display: block;
-    
 }
 
 #mainContent {
     @include center-element;
-    width: 80%;
+    width: 1350px;
+        @media screen and (max-width: $tablet-width) {
+            width: 100%;
+        }
 }
 
 #mainCourse {

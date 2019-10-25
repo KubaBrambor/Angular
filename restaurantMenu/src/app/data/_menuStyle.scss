@@ -1,0 +1,81 @@
+@import './styleVariables';
+
+.mainContainer{
+    box-sizing: content-box;
+    border: solid 5px rgb(238, 232, 208);
+    border-radius: 5px;
+    margin: 10px 10px 10px 10px;
+    width: 400px;
+    height: 150px;
+    padding: 10px 10px 10px 10px;
+    box-shadow: 6px 7px 16px -2px rgba(0,0,0,0.81);
+    text-align: center;
+    background: cornsilk;
+    position: relative;
+        @media screen and (max-width: $tablet-width) {
+            width: 200px;
+            height: 200px;
+            position: relative;
+        }
+}
+
+.title{
+    font-size:20px;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.button{
+    position: absolute;
+    display: block;
+    bottom: 10px;
+    width: 70px;
+    margin-left: 165px;
+    border: solid 2px rgba(100, 148, 237, 0.795);
+    border-radius: 2px;
+    background: cornflowerblue;
+    color: whitesmoke;
+        @media screen and (max-width: $tablet-width) {
+            width: 100px;
+            height: 50px;
+            bottom: 0px;
+            position: absolute;
+            display: block;
+            margin-left:50px;
+        }
+}
+
+.button:hover{
+    background: rgb(119, 166, 253);
+    border: solid 2px rgb(119, 166, 253);
+}
+
+.hide {
+    box-sizing: content-box;
+    height: 150px;
+}
+
+.backButton {
+    position: absolute;
+    display: block;
+    bottom: 10px;
+    width: 70px;
+    margin-left: 165px;
+    border: solid 2px rgba(100, 148, 237, 0.795);
+    border-radius: 2px;
+    background: cornflowerblue;
+    color: whitesmoke;
+        @media screen and (max-width: $tablet-width) {
+            width: 100px;
+            height: 50px;
+            bottom: 0px;
+            position: absolute;
+            display: block;
+            margin-left:50px;
+        }
+}
+
+.backButton:hover{
+    background: rgb(119, 166, 253);
+    border: solid 2px rgb(119, 166, 253);
+}
