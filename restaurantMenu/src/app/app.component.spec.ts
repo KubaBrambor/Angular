@@ -1,5 +1,6 @@
 import { TestBed, async } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { MainCourseComponent } from './component/main-course/main-course.component';
@@ -20,6 +21,7 @@ describe('AppComponent', ()=> {
     
     beforeEach(async(()=> {
         TestBed.configureTestingModule({
+            imports: [ FormsModule ],
             declarations: [
                 AppComponent,
                 MainCourseComponent,
