@@ -1,0 +1,17 @@
+#order-name .ng-untouched,
+#order-surname .ng-untouched {
+    background: whitesmoke;
+}
+
+#order-adress .ng-valid {
+    border: solid 2px greenyellow;
+}
+
+#order-name .ng-touched,
+#order-surname .ng-touched {
+    background: rgb(209, 207, 207);
+}
+
+#order-adress .ng-invalid {
+    border: solid 2px red;
+}
