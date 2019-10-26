@@ -10,6 +10,9 @@ import { drinkMenu } from '../data/drinkMenu';
 import { Desser } from '../model/desser/desser';
 import { desserMenu } from '../data/desserMenu';
 
+import { Purchaser } from '../model/order/order';
+import { orders } from '../data/orders';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -27,5 +30,9 @@ export class ServiceService {
 
   getDesser():Desser[] {
     return desserMenu;
+  }
+
+  setOrder(value):void  {
+    orders.push(value);
   }
 }

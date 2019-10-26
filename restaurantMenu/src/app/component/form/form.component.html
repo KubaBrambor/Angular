@@ -1,14 +1,39 @@
-<h1 id="title">Formualrz dodawania potraw</h1>
+<h1 id="title">Podaj dane zamówienia</h1>
 <div class="form-group">
-    <form> 
-        <div class="dish-name">
-            <input type="text"
-            placeholder="Wpisz potrawę"
-            name="newDish"
-            [(ngModel)]="newDish.name">
+    <form (ngSubmit)="setNewOrder()"> 
+        <div id="order-shipping">
+            <input type="radio" name="shipping"
+            [(ngModel)]="shipping" 
+            (click)="!hideFunc()" value="odbior"> Odbiór własny
         </div>
+        <div id="order-shipping">
+            <input type="radio" name="shipping"
+            [(ngModel)]="shipping"
+            (click)="showFunc()" value="dowoz"> Dowóz
+        </div>
+        <div id="hide" *ngIf="hide">
+                <div id="order-name">
+                    <input type="text"
+                    placeholder="Wpisz imię"
+                    name="name"
+                    [(ngModel)]="name">
+                </div>
+                <div id="order-surname">
+                    <input type="text"
+                    placeholder="Wpisz nazwisko"
+                    name="surname"
+                    [(ngModel)]="surname">
+                </div>
+                <div id="order-adress">
+                    <input type="text"
+                    placeholder="Wpisz adres"
+                    name="adress"
+                    [(ngModel)]="adress">
+                </div>
+            </div>
+        <button type="submit">Zamów</button>
     </form>
-    <button (click)="newDish.name='test'">Click</button>
+    
 </div>
 
-<h4>Nazwa dania to {{newDish.name}}</h4>
+<h4>Nazwa dania to {{surname}}</h4>
