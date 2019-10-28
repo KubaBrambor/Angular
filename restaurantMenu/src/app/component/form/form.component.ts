@@ -24,9 +24,15 @@ export class FormComponent {
     console.log(orders);
   }
 
-  setNewOrder(event){
-    orders.push(new Purchaser(this.name, this.surname, this.adress, this.shipping))
-    console.log(orders)
+  setNewOrder(clientForm){
+    if(clientForm.valid){
+      orders.push(new Purchaser(this.name, this.surname, this.adress, this.shipping))
+      console.log(orders)
+    } else {
+      console.error("Nie wypełniono formularza!");
+    }
+    
+    
   }
   
   showFunc(){
