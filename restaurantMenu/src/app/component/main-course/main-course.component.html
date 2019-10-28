@@ -3,12 +3,12 @@
         <p class="title">{{course.$name}}</p>
         <p class="id">ID: {{course.$id}}</p>
         <p class="price">Cena {{course.$price}} zł</p>
-        <button class="button" (click)="course.$hideFunc($event)">Rozwiń</button>
+        <button class="buttonMenu" (click)="course.$hideFunc($event)">Rozwiń</button>
     </div>
     
     <div class="hide" *ngIf="course.$hide">
         <p class="ingridients">Skład: {{course.$ingridients}}</p>
         <p class="alergens">Alergeny: {{course.$alergens}}</p>
-        <button class="backButton" (click)="course.$hideFunc($event)">Wróć</button>
+        <button class="buttonMenu" (click)="course.$hideFunc($event)">Wróć</button>
     </div>
 </div>

@@ -3,12 +3,12 @@
             <p class="title">{{drink.$name}}</p>
             <p>ID: {{drink.$id}}</p>
             <p>Cena {{drink.$price}} zł</p>
-            <button class="button" (click)="drink.$hideFunc()">Rozwiń</button>
+            <button class="buttonMenu" (click)="drink.$hideFunc()">Rozwiń</button>
         </div> 
         
         <div class="hide" *ngIf="drink.$hide">
             <p>Mililitry: {{drink.$mililiters}}</p>
-            <button class="backButton" (click)="drink.$hideFunc()">Wróc</button>
+            <button class="buttonMenu" (click)="drink.$hideFunc()">Wróc</button>
         </div>
 
         

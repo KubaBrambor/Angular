@@ -3,12 +3,12 @@
         <p class="title">{{desser.$name}}</p>
         <p>ID: {{desser.$id}}</p>
         <p>Cena {{desser.$price}} zł</p>
-        <button class="button" (click)="desser.$hideFunc()">Rozwiń</button>
+        <button class="buttonMenu" (click)="desser.$hideFunc()">Rozwiń</button>
     </div>
     
     <div class="hide" *ngIf="desser.$hide">
         <p>Skład: {{desser.$ingridients}}</p>
-        <button class="backButton" (click)="desser.$hideFunc()">Wróc</button>
+        <button class="buttonMenu" (click)="desser.$hideFunc()">Wróc</button>
     </div>
 </div>
 
