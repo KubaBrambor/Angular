@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { orders } from 'src/app/data/orders';
 
 @Component({
@@ -8,12 +8,19 @@ import { orders } from 'src/app/data/orders';
   styleUrls: ['./form-reactive.component.scss']
 })
 export class FormReactiveComponent {
-  public formControl: FormGroup = new FormGroup({
-    name: new FormControl(null, [Validators.required, Validators.minLength(1)]),
-    surname: new FormControl(null, [Validators.required, Validators.minLength(1)]),
-    adress: new FormControl(null, [Validators.required, Validators.minLength(1)])
-  });
-  constructor() { }
+  public formControl: FormGroup;
+
+  constructor(private fb: FormBuilder) { 
+    this.buildForm();
+  }
+
+  buildForm(){
+    this.formControl = this.fb.group({
+      name: [null, [Validators.required, Validators.minLength(1)]],
+      surname: [null, [Validators.required, Validators.minLength(1)]],
+      adress: [null, [Validators.required, Validators.minLength(2)]]
+    })
+  }
 
   onSubmit(){
     console.log(this.formControl.value, this.formControl.status)
