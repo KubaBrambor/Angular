@@ -14,6 +14,7 @@ export class FormComponent {
   public puchaser:object;
   public hide:boolean = false;
   public disable:boolean = true;
+  public orderData:boolean = false;
 
   constructor(private Service: ServiceService) { 
   
@@ -22,6 +23,7 @@ export class FormComponent {
   setNewOrder(clientForm){
     if(clientForm.valid && clientForm.touched){
       this.puchaser = clientForm.value.orderForm;
+      this.setOrderData();
       console.log(this.puchaser);
       orders.push(this.puchaser);
       console.log(orders)
@@ -45,5 +47,9 @@ export class FormComponent {
 
   setCheckButton(){
     this.disable = !this.disable;
+  }
+
+  setOrderData(){
+    this.orderData = !this.orderData;
   }
 }

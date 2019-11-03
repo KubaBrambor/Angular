@@ -1,0 +1,25 @@
+<div id="reactive-form">
+    <form [formGroup]="formControl" (ngSubmit)="onSubmit()">
+        <div id="clientName">
+            <input type="text" id="name"
+            placeholder="imię"
+            name="name"
+            formControlName="name">
+        </div>
+
+        <div id="clientSurname">
+            <input type="text" id="surname"
+            placeholder="nazwisko"
+            name="surname"
+            formControlName="surname">
+        </div>
+
+        <div id="clientAdress">
+            <input type="text" id="adress"
+            placeholder="adres"
+            name="adress"
+            formControlName="adress">
+        </div>
+        <button id="submitButton">CLICK ME</button>
+    </form>
+</div>
