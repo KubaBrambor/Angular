@@ -4,56 +4,50 @@
         <div id="order-shipping">
             <input type="radio" name="clientShipping"
             [(ngModel)]="shipping" 
-            (click)="!hideFunc()" value="odbior"> Odbiór własny
+            (click)="hideFunc()" value="odbior"> Odbiór własny
         </div>
         <div id="order-shipping">
             <input type="radio" name="clientShipping"
             [(ngModel)]="shipping"
             (click)="showFunc()" value="dowoz"> Dowóz
         </div>
+        <div ngModelGroup="orderForm">
         <div id="hide" *ngIf="hide">
                 <div id="order-name">
                     <input type="text"
                     placeholder="Wpisz imię"
                     required
                     name="clientName"
-                    minlength="5"
-                    #clientName="ngModel"
-                    [(ngModel)]="name">
+                    ngModel>
                 </div>
-                <div *ngIf="clientName.touched && clientName.invalid">
-                    <div *ngIf="clientName.errors.minlength">
-                        <p>Uzupełnij obowiązkowe pole.</p>
-                    </div>
-                </div>
+                
                 <div id="order-surname">
                     <input type="text"
                     placeholder="Wpisz nazwisko"
                     required
                     name="clientSurname"
-                    #clientSurname="ngModel"
-                    [(ngModel)]="surname">
+                    ngModel>
                 </div>
-                <div *ngIf="clientSurname.touched && clientSurname.invalid">
-                    <div *ngIf="clientSurname.errors.required">
-                        <p>Uzupełnij obowiązkowe pole.</p>
-                    </div>
-                </div>
+                
                 <div id="order-adress">
                     <input type="text"
                     placeholder="Wpisz adres"
+                    pattern="[a-zA-Z.]{1,}\s+[0-9]\/?[0-9]{1,3}?"
                     required
                     name="clientAdress"
-                    #clientAdress="ngModel"
-                    [(ngModel)]="adress">
+                    ngModel>
                 </div>
-                <div *ngIf="clientAdress.touched && clientAdress.invalid">
-                    <div *ngIf="clientAdress.errors.required">
-                        <p>Uzupełnij obowiązkowe pole.</p>
-                    </div>
+                
+                <div id="order-checkbox">
+                    <input type="checkbox"
+                    required
+                    name="clientCheckbox"
+                    (change)="setCheckButton()">
+                    Zgadzam się na warunki zamówienia.
                 </div>
             </div>
-        <button type="submit">Zamów</button>
+        </div>
+        <button type="submit" [disabled]="disable">Zamów</button>
     </form>
     
 </div>

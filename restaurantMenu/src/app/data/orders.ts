@@ -1,4 +1,4 @@
 import { Purchaser } from '../model/order/order';
 
-export let orders:Array<Purchaser> = [
+export let orders:Array<any> = [
 ]

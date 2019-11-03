@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from '../../service/service.service';
 
-import { Purchaser } from '../../model/order/order';
 import { orders } from '../../data/orders';
 
 
@@ -12,22 +11,21 @@ import { orders } from '../../data/orders';
 })
 export class FormComponent {
 
-  public name:string;
-  public surname:string;
-  public adress:string;
-  public shipping:string;
+  public puchaser:object;
   public hide:boolean = false;
+  public disable:boolean = true;
 
   constructor(private Service: ServiceService) { 
-    // this.newOrder = new Purchaser("", "", "", "");
-    // this.setNewOrder();
-    console.log(orders);
+  
   }
 
   setNewOrder(clientForm){
-    if(clientForm.valid){
-      orders.push(new Purchaser(this.name, this.surname, this.adress, this.shipping))
+    if(clientForm.valid && clientForm.touched){
+      this.puchaser = clientForm.value.orderForm;
+      console.log(this.puchaser);
+      orders.push(this.puchaser);
       console.log(orders)
+      
     } else {
       console.error("Nie wypełniono formularza!");
     }
@@ -37,9 +35,15 @@ export class FormComponent {
   
   showFunc(){
     this.hide = !this.hide;
+    this.disable = true;
   };
 
   hideFunc(){
     this.hide = false;
+    this.disable = !this.disable;
+  }
+
+  setCheckButton(){
+    this.disable = !this.disable;
   }
 }
