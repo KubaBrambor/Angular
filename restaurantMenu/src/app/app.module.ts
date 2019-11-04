@@ -9,7 +9,9 @@ import { MainCourseComponent } from './component/main-course/main-course.compone
 import { DrinksComponent } from './component/drinks/drinks.component';
 import { DessersComponent } from './component/dessers/dessers.component';
 import { FormComponent } from './component/form/form.component';
-import { FormReactiveComponent } from './component/form-reactive/form-reactive.component'
+import { FormReactiveComponent } from './component/form-reactive/form-reactive.component';
+import { NextFormComponent } from './component/next-form/next-form.component';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { FormReactiveComponent } from './component/form-reactive/form-reactive.c
     DrinksComponent,
     DessersComponent,
     FormComponent,
-    FormReactiveComponent
+    FormReactiveComponent,
+    NextFormComponent
     ],
   imports: [
     BrowserModule,

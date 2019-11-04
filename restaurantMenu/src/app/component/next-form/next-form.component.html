@@ -1,0 +1,19 @@
+
+<div id="formContainer">
+    <form id="mainForm" [formGroup]="mainForm" (ngSubmit)="submitOrder();">
+        <div id="name">
+            <input type="text" id="nameInput"
+            placeholder="Imię"
+            formControlName="name"
+            >
+        </div>
+
+        <div id="surname">
+            <input type="text" id="surnameInput"
+            placeholder="Nazwisko"
+            formControlName="surname"
+            >
+        </div>
+        <button id="submitButton">CLICK</button>
+    </form>
+</div>
