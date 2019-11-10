@@ -1,0 +1,26 @@
+<div class="card border-card" style="width: 100%;">
+    <div class="image-box">
+        <img class="card-img-top image" [src]="logo" alt="Card image cap">
+        <p class="card-text temperature h1">{{temperature}}°C</p>
+    </div>
+    <div class="card-body card-background">
+            <table class="table">
+                    <tbody>
+                      <tr>
+                        <th scope="row" id="rain">{{rain}}</th>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>Temperatura gleby</td>
+                        <th scope="row">{{terrainTemperature}}°C</th>
+                      </tr>
+                      <tr>
+                        <td>Wilgotność</td>
+                        <th scope="row">{{wetness}}%</th>
+                      </tr>
+                    </tbody>
+                  </table>
+    </div>
+    <p id="localisation-text">lokalizacja: {{localisation}}</p>
+    
+</div>

@@ -1,0 +1,45 @@
+
+
+.card-title{
+    padding-bottom: 20px;
+}
+
+.card-background{
+    background: rgb(255, 255, 255);
+}
+
+.border-card{
+    border: solid rgb(172, 172, 172) 3px;
+    box-shadow: 10px 10px 17px 0px rgba(0,0,0,0.75);
+    margin-top: 3%;
+}
+
+.image-box{
+    position: relative;
+    
+}
+
+.localisation{
+    float: left;
+}
+
+.temperature{
+    position: absolute;
+    top: -80px;
+    font-size: 20rem;
+    color: rgb(0, 0, 0);
+}
+
+.image{
+    border: solid rgb(202, 201, 201) 2px;
+}
+
+#rain{
+    font-size: 2rem;
+}
+
+#localisation-text{
+    font-size: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+}
