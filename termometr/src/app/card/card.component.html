@@ -22,5 +22,8 @@
                   </table>
     </div>
     <p id="localisation-text">lokalizacja: {{localisation}}</p>
+    <select name="localisation-select" id="localisation-selection" (change)="onSubmit($event)">
+      <option *ngFor="let localisation of localArr" [value]="localisation._id">{{localisation.Lokalizacja_Opis}}</option>
+    </select>
     
 </div>
