@@ -32,27 +32,27 @@ export class CardComponent implements OnInit {
   ngOnInit() {
     /* Get data from API for Lotnicza localisation, as default. */
     this.http.get(this.url).subscribe(data => {
-      console.log(data.result.records[1])
 
       for(let i=0; i<data.result.records.length; i++){
         this.localArr.push(data.result.records[i]) 
       }
-      this.localArr.splice(0,1);
-      console.log(this.localArr)
 
-      this.temperature = data.result.records[1].T_Powietrza;
+      /* Delete record from Widawska street, since it wasn't updated for long time */
+      this.localArr.splice(0,1);
+
+      this.temperature = this.localArr[0].T_Powietrza;
       console.log(this.temperature);
       
-      this.localisation = data.result.records[1].Lokalizacja_Opis;
+      this.localisation = this.localArr[0].Lokalizacja_Opis;
       console.log(this.localisation);
 
-      this.rain = data.result.records[1].Opad_Typ;
+      this.rain = this.localArr[0].Opad_Typ;
       console.log(this.rain);
 
-      this.terrainTemperature = data.result.records[1].T_Grunt;
+      this.terrainTemperature = this.localArr[0].T_Grunt;
       console.log(this.terrainTemperature);
 
-      this.wetness = data.result.records[1].Wilgotnosc;
+      this.wetness = this.localArr[0].Wilgotnosc;
       console.log(this.wetness)
     })
   }
@@ -63,22 +63,36 @@ export class CardComponent implements OnInit {
     console.log(event.target.selectedIndex);
     this.http.get(this.url).subscribe(data => {
 
-      /*dodać tablicę i splice */ 
-      this.indexData = event.target.selectedIndex;
-      this.temperature = data.result.records[this.indexData].T_Powietrza;
+      /* Clear localArr array for fresh weather data */
+      this.localArr.splice(0, this.localArr.length);
+
+      for(let i=0; i<data.result.records.length; i++){
+        this.localArr.push(data.result.records[i]) 
+      }
+
+      /* Delete record from Widawska street, since it wasn't updated for long time */
+      this.localArr.splice(0,1)
+      console.log(this.localArr);
+      
+      this.indexData = event.target.selectedIndex - 1;
+      console.warn(this.indexData);
+
+      this.temperature = this.localArr[this.indexData].T_Powietrza;
       console.log(this.temperature);
     
-      this.localisation = data.result.records[this.indexData].Lokalizacja_Opis;
+      this.localisation = this.localArr[this.indexData].Lokalizacja_Opis;
       console.log(this.localisation);
 
-      this.rain = data.result.records[this.indexData].Opad_Typ;
+      this.rain = this.localArr[this.indexData].Opad_Typ;
       console.log(this.rain);
 
-      this.terrainTemperature = data.result.records[this.indexData].T_Grunt;
+      this.terrainTemperature = this.localArr[this.indexData].T_Grunt;
       console.log(this.terrainTemperature);
 
-      this.wetness = data.result.records[this.indexData].Wilgotnosc;
+      this.wetness = this.localArr[this.indexData].Wilgotnosc;
       console.log(this.wetness)
+
+     
     })
   }
 
