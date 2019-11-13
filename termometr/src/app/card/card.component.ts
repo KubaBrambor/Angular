@@ -31,7 +31,7 @@ export class CardComponent implements OnInit {
 
   ngOnInit() {
     /* Get data from API for Lotnicza localisation, as default. */
-    this.http.get(this.url).subscribe(data => {
+    this.http.get(this.url).subscribe((data:any) => {
 
       for(let i=0; i<data.result.records.length; i++){
         this.localArr.push(data.result.records[i]) 
@@ -61,7 +61,7 @@ export class CardComponent implements OnInit {
      Get data from API and with proper index of selected localisation, showing results. */
   onSubmit(event){
     console.log(event.target.selectedIndex);
-    this.http.get(this.url).subscribe(data => {
+    this.http.get(this.url).subscribe((data:any) => {
 
       /* Clear localArr array for fresh weather data */
       this.localArr.splice(0, this.localArr.length);
