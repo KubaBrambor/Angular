@@ -1,0 +1,29 @@
+<p>form works!</p>
+
+<div class="form-group">
+    <form [formGroup]="pomiar" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <p>Ciśnienie</p>
+            <input type="text"
+                placeholder="Wpisz pomiar"
+                formControlName="cisnienie">
+        </div>
+        <div class="form-group">
+                <input type="radio"
+                formControlName="pora"
+                name="pora"
+                value="Rano"> Rano
+                <input type="radio"
+                formControlName="pora"
+                name="pora"
+                value="Wieczór"> Wieczór
+        </div>
+        <div class="form-group">
+            <input type="date"
+                formControlName="data">
+        </div>
+        <button type="submit" class="btn btn-primary">Dodaj pomiar</button>
+    </form>
+</div>
+
+<p>{{ pomiar.value | json}}</p>
