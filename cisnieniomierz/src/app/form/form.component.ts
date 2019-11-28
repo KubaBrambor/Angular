@@ -16,8 +16,8 @@ export class FormComponent implements OnInit {
 
   createForm(){
     this.pomiar = this.fb.group({
-      cisnienie:[null, Validators.required],
-      pora:[null],
+      cisnienie:[null, [Validators.required, Validators.min(1)]],
+      pora:[null, Validators.required],
       data:[null, Validators.required]
     })
   }
