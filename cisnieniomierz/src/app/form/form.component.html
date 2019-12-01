@@ -7,10 +7,10 @@
             <input type="text"
                 placeholder="Wpisz pomiar"
                 formControlName="cisnienie">
-                <div *ngIf="pomiar.get('cisnienie').touched && pomiar.get('cisnienie').pristine">
+                <div *ngIf="cisnienie.touched && cisnienie.pristine">
                     <p class="text-warning">Pamiętaj aby uzupełnić pole.</p>
                 </div>
-                <div *ngIf="pomiar.get('cisnienie').invalid && pomiar.get('cisnienie').dirty">
+                <div *ngIf="cisnienie.invalid && cisnienie.dirty">
                     <p class="text-danger">Minimalna jednostka ciśnienia to 1.</p>
                 </div>
         </div>
@@ -29,9 +29,10 @@
             <input type="date"
                 formControlName="data">
         </div>
-        <button type="submit" class="btn btn-primary" [disabled]="pomiar.get('data').invalid || pomiar.get('pora').invalid">Dodaj pomiar</button>
+        <button type="submit" class="btn btn-primary" [disabled]="data.invalid || pora.invalid">Dodaj pomiar</button>
     </form>
 </div>
 
 <p>{{ pomiar.value | json}}</p>
 <p>{{ pomiar.status | json}}</p>
+<p>{{ pomiarObj.cisnienie }}</p>
