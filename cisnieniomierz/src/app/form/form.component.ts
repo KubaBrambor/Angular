@@ -36,4 +36,7 @@ export class FormComponent implements OnInit {
     console.log(this.pomiarObj);
   }
 
+  resetPomiar(){
+    this.pomiar.reset();
+  }
 }

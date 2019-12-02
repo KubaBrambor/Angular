@@ -30,6 +30,7 @@
                 formControlName="data">
         </div>
         <button type="submit" class="btn btn-primary" [disabled]="data.invalid || pora.invalid">Dodaj pomiar</button>
+        <button class="btn btn-warning" (click)="resetPomiar()">Resetuj pomiar</button>
     </form>
 </div>
 
