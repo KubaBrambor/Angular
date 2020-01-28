@@ -13,8 +13,10 @@ export class StockListComponent implements OnInit {
   constructor(private stockService: StockService) { }
 
   ngOnInit() {
-    this.stocks = this.stockService.getStocks();
+    this.stockService.getStocks()
+        .subscribe(stocks => this.stocks = stocks);
   }
+  
   onToggleFavorite(stock: Stock) {
     console.log('Favorite for stock ', stock, ' was triggered');
     this.stockService.toggleFavorite(stock);
