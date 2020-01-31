@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Stock } from 'app/model/stock';
 import { StockService } from 'app/services/stock.service';
 import { MessageService } from 'app/services/message.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-create-stock',
@@ -10,7 +11,7 @@ import { MessageService } from 'app/services/message.service';
   providers: [MessageService]
 })
 export class CreateStockComponent {
-
+  public stocks$: Observable<Stock[]>;
   public stock: Stock;
   public confirmed = false;
   public exchanges = ['NYSE', 'NASDAQ', 'OTHER'];
@@ -28,24 +29,14 @@ export class CreateStockComponent {
   createStock(stockForm) {
     console.log('Stock form', stockForm);
     if (stockForm.valid) {
-<<<<<<< HEAD
-      let created = this.stockService.createStock(this.stock);
-      if(created){
-        this.messageService.message = 
-            'Sucessfully created stock with code ' + this.stock.code;
-        this.stock = new Stock('', '', 0, 0, 'NASDAQ');
-      } else {
-        this.messageService.message = 
-            'Stock with code ' + this.stock.code + ' already exists.'
-      }
-=======
       this.stockService.createStock(this.stock).subscribe((result: any) => {
-        this.message = result.msg;
+        this.messageService.message = result.msg;
         this.stock = new Stock('', '', 0, 0, 'NASDAQ');
       }, (err) => {
-        this.message = err.msg;
+        this.messageService.message = err.msg;
       });
->>>>>>> 9715230560fe7901c524ccd12c4e4d6d387bf6dc
+      this.stocks$ = this.stockService.getStocks();
+      this.stocks$.subscribe(stock => {console.log(stock, stock.length)});
     } else {
       console.error('Stock form is invalid state');
     }
