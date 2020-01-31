@@ -1,0 +1,9 @@
+
+<div class="pomiar-container" *ngFor="let pomiar of pomiary">
+    <div class="cisnienie" 
+        [class.bg-warning]="pomiar.cisnienie > 130" 
+        [class.bg-danger]="pomiar.cisnienie > 150" 
+        [class.bg-success]="pomiar.cisnienie <= 130">{{ pomiar.cisnienie }}</div>
+    <div class="pora">{{ pomiar.pora }}</div>
+    <div class="data">{{ pomiar.data }}</div>
+</div>
