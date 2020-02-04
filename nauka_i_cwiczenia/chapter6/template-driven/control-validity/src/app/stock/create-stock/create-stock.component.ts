@@ -11,14 +11,23 @@ import { Observable } from 'rxjs/Observable';
   providers: [MessageService]
 })
 export class CreateStockComponent {
-  public stocks$: Observable<Stock[]>;
   public stock: Stock;
   public confirmed = false;
+  public message = null;
   public exchanges = ['NYSE', 'NASDAQ', 'OTHER'];
-  constructor(private stockService: StockService,
-              public messageService: MessageService) {
-    this.stock =  new Stock('', '', 0, 0, 'NASDAQ');
-    this.messageService.message = 'CREATE-STOCK COMPONENT LEVEL: Hello MessageService in create-stock component!';
+  constructor(private stockService: StockService) {
+    this.initializeStock();
+  }
+
+  initializeStock() {
+    this.stock = {
+      name: '',
+      code: '',
+      price: 0,
+      previousPrice: 0,
+      exchange: 'NASDAQ',
+      favorite: false
+    };
   }
 
   setStockPrice(price) {
@@ -30,13 +39,11 @@ export class CreateStockComponent {
     console.log('Stock form', stockForm);
     if (stockForm.valid) {
       this.stockService.createStock(this.stock).subscribe((result: any) => {
-        this.messageService.message = result.msg;
-        this.stock = new Stock('', '', 0, 0, 'NASDAQ');
+        this.message = result.msg;
+        this.initializeStock();
       }, (err) => {
-        this.messageService.message = err.msg;
+        this.message = err.error.msg;
       });
-      this.stocks$ = this.stockService.getStocks();
-      this.stocks$.subscribe(stock => {console.log(stock, stock.length)});
     } else {
       console.error('Stock form is invalid state');
     }

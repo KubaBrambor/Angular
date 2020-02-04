@@ -18,10 +18,4 @@ export class StockListComponent implements OnInit {
     this.stocks$.subscribe(stocks => {console.log(stocks);
     console.log('showing!')});
   }
-  
-  onToggleFavorite(stock: Stock) {
-    console.log('Favorite for stock ', stock, ' was triggered');
-    this.stockService.toggleFavorite(stock);
-  }
-
 }
