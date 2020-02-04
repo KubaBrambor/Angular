@@ -17,6 +17,7 @@ export class StockItemComponent {
    }
 
   onToggleFavorite(event) {
-    this.stockService.toggleFavorite(this.stock).subscribe((stock) => this.stock.favorite = !this.stock.favorite);
+    this.stockService.toggleFavorite(this.stock).subscribe((result: any) => {this.stock.favorite = !this.stock.favorite;
+    console.log(result.msg)});
   }
 }
