@@ -39,6 +39,7 @@ export class CardComponent implements OnInit {
 
       /* Delete record from Widawska street, since it wasn't updated for long time */
       this.localArr.splice(0,1);
+      console.log(this.localArr[1])
 
       this.temperature = this.localArr[0].T_Powietrza;
       console.log(this.temperature);
