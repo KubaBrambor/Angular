@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import { WeatherObj } from '../model/weather-obj';
+import { HttpService } from '../services/http-service.service';
+
 @Component({
   selector: 'card',
   templateUrl: './card.component.html',
@@ -27,11 +30,12 @@ export class CardComponent implements OnInit {
   private localArr = [];
   private indexData;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private http2: HttpService) { }
 
   ngOnInit() {
     /* Get data from API for Lotnicza localisation, as default. */
-    this.http.get(this.url).subscribe((data:any) => {
+    this.http2.getValues().subscribe((data:any) => {
 
       for(let i=0; i<data.result.records.length; i++){
         this.localArr.push(data.result.records[i]) 
@@ -62,7 +66,7 @@ export class CardComponent implements OnInit {
      Get data from API and with proper index of selected localisation, showing results. */
   onSubmit(event){
     console.log(event.target.selectedIndex);
-    this.http.get(this.url).subscribe((data:any) => {
+    this.http2.getValues().subscribe((data:any) => {
 
       /* Clear localArr array for fresh weather data */
       this.localArr.splice(0, this.localArr.length);
