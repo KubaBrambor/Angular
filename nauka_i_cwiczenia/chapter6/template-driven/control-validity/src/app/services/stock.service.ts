@@ -3,7 +3,7 @@ import { Stock } from '../model/stock';
 import { Observable } from 'rxjs/Observable';
 import { _throw as ObservableThrow } from 'rxjs/observable/throw';
 import { of as ObservableOf } from 'rxjs/observable/of';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpResponse, HttpEvent } from '@angular/common/http';
 
 @Injectable()
 export class StockService {
@@ -19,10 +19,35 @@ export class StockService {
         .set('X-EXAMPLE-HEADER', 'TestValue'),
       params: new HttpParams()
         .set('q', 'last')
-        .set('test', 'value')
+        .set('test', 'value'),
+      observe: 'body'
     });
   }
 
+  getStocksResponse(): Observable<HttpResponse<Stock[]>> {
+    return this.http.get<Stock[]>('api/stock', {
+      observe: 'response'
+    })
+  }
+
+  getStocksEvent(): Observable<HttpEvent<any>> {
+    return this.http.get('api/stock', {
+      observe: 'events'
+    })
+  }
+
+  getStocksString(): Observable<string> {
+    return this.http.get('api/stock', {
+      responseType: 'text'
+    })
+  }
+
+  getStocksBlob(): Observable<Blob> {
+    return this.http.get('api/stock', {
+      responseType: 'blob'
+    })
+  }
+  
   createStock(stock: Stock): Observable<any>{
     return this.http.post('/api/stock', stock);
   }

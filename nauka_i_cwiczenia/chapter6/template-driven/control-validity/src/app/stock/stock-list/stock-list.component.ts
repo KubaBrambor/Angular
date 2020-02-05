@@ -17,5 +17,22 @@ export class StockListComponent implements OnInit {
     this.stocks$ = this.stockService.getStocks();
     this.stocks$.subscribe(stocks => {console.log(stocks);
     console.log('showing!')});
+
+    this.stockService.getStocksResponse()
+      .subscribe((response) => {
+        console.log('OBSERVE "response" RESPONSE is ', response)
+      });
+    this.stockService.getStocksEvent()
+      .subscribe((response) => {
+        console.log('OBSERVE "events" RESPONSE is ', response)
+      })
+    this.stockService.getStocksString()
+      .subscribe((response) => {
+        console.log('Response Type "text" RESPONSE is ', response)
+      })
+    this.stockService.getStocksBlob()
+      .subscribe((response) => {
+        console.log('Response Type "blob" RESPONSE is ', response)
+      })
   }
 }
