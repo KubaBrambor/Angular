@@ -18,10 +18,22 @@
                         <td>Wilgotność</td>
                         <th scope="row">{{wetness}}%</th>
                       </tr>
+                      <tr>
+                        <td>Kierunek Wiatru</td>
+                        <th *ngIf="windDirection <= 10 || windDirection >= 350">północny</th>
+                        <th *ngIf="windDirection > 10 && windDirection < 80">północno-wschodni</th>
+                        <th *ngIf="windDirection >= 80 && windDirection <= 100">wschodni</th>
+                        <th *ngIf="windDirection > 100 && windDirection < 170">południowo-wschodni</th>
+                        <th *ngIf="windDirection >= 170 && windDirection <= 190">południowy</th>
+                        <th *ngIf="windDirection > 190 && windDirection < 260">południowy-zachodni</th>
+                        <th *ngIf="windDirection >= 260 && windDirection <= 280">zachodni</th>
+                        <th *ngIf="windDirection > 280 && windDirection < 350">północno-zachodni</th>
+                      </tr>
                     </tbody>
                   </table>
     </div>
     <p id="localisation-text">lokalizacja: {{localisation}}</p>
+    <p id="time-text">Data aktualizacji: {{time}}</p>
     <select class="form-control" id="localisation-selection" name="localisation-select" (change)="onSubmit($event)">
       <option>Wybierz lokalizacje</option>
       <option *ngFor="let localisation of localArr" [value]="localisation._id">{{localisation.Lokalizacja_Opis}}</option>

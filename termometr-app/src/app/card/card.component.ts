@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 import { WeatherObj } from '../model/weather-obj';
 import { HttpService } from '../services/http-service.service';
@@ -11,31 +10,22 @@ import { HttpService } from '../services/http-service.service';
 })
 export class CardComponent implements OnInit {
 
-  private logo = require('../../assets/logo.jpg')
-
-  /*
-  Added proxy "cors-anywhere" to prevent cros-policy error. It can slow data loading process. 
-  If it's slow, delete first part of link and use extension "Moesif Origin Cors Changer" 
-   LINK -> https://chrome.google.com/webstore/detail/moesif-orign-cors-changer/digfbfaphojjndkpccljibejjbppifbc
-
-   link to proxy -> https://cors-anywhere.herokuapp.com/
-  */
-  private url:string = 'https://www.wroclaw.pl/open-data/api/action/datastore_search?resource_id=9d5b2336-6f9a-4fa0-8cbe-d6b4776194c3&limit=5';
-  
+  private logo = require('../../assets/logo.jpg');
+  private localArr = [];
   private temperature;
   private localisation;
   private rain;
   private terrainTemperature;
   private wetness;
-  private localArr = [];
+  private time;
+  private windDirection;
   private indexData;
 
-  constructor(private http: HttpClient,
-              private http2: HttpService) { }
+  constructor(private http: HttpService) { }
 
   ngOnInit() {
     /* Get data from API for Lotnicza localisation, as default. */
-    this.http2.getValues().subscribe((data:any) => {
+    this.http.getValues().subscribe((data:any) => {
 
       for(let i=0; i<data.result.records.length; i++){
         this.localArr.push(data.result.records[i]) 
@@ -43,7 +33,7 @@ export class CardComponent implements OnInit {
 
       /* Delete record from Widawska street, since it wasn't updated for long time */
       this.localArr.splice(0,1);
-      console.log(this.localArr[1])
+      console.log(this.localArr)
 
       this.temperature = this.localArr[0].T_Powietrza;
       console.log(this.temperature);
@@ -58,7 +48,14 @@ export class CardComponent implements OnInit {
       console.log(this.terrainTemperature);
 
       this.wetness = this.localArr[0].Wilgotnosc;
-      console.log(this.wetness)
+      console.log(this.wetness);
+
+      this.time = this.localArr[0].Czas_Rejestracji;
+      console.log(this.time);
+
+      this.windDirection = this.localArr[0].Wiatr_Kierunek;
+      console.log(this.windDirection);
+
     })
   }
 
@@ -66,7 +63,7 @@ export class CardComponent implements OnInit {
      Get data from API and with proper index of selected localisation, showing results. */
   onSubmit(event){
     console.log(event.target.selectedIndex);
-    this.http2.getValues().subscribe((data:any) => {
+    this.http.getValues().subscribe((data:any) => {
 
       /* Clear localArr array for fresh weather data */
       this.localArr.splice(0, this.localArr.length);
@@ -97,6 +94,11 @@ export class CardComponent implements OnInit {
       this.wetness = this.localArr[this.indexData].Wilgotnosc;
       console.log(this.wetness)
 
+      this.time = this.localArr[this.indexData].Czas_Rejestracji;
+      console.log(this.time);
+
+      this.windDirection = this.localArr[this.indexData].Wiatr_Kierunek;
+      console.log(this.windDirection);
      
     })
   }
