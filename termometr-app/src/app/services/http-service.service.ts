@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs'
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http'
 
 import { WeatherObj } from '../model/weather-obj'
 
@@ -20,7 +20,9 @@ export class HttpService {
   
   constructor(private http: HttpClient) { }
 
-  getValues(): Observable<WeatherObj[]>{
-    return this.http.get<WeatherObj[]>(this.proxyUrl + this.url)
+  getValues(): Observable<HttpResponse<WeatherObj[]>>{
+    return this.http.get<WeatherObj[]>(this.proxyUrl + this.url, {
+      observe: 'response'
+    })
   }
 }
