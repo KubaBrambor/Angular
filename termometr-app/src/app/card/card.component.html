@@ -34,6 +34,8 @@
     </div>
     <p id="localisation-text">lokalizacja: {{localisation}}</p>
     <p id="time-text">Data aktualizacji: {{time}}</p>
+    <button class="btn btn-info" (click)="setAsDefault($event)" [disabled]="buttonDisable" *ngIf="!buttonMessage">Domyślna lokalizacja</button>
+    <button class="btn btn-info" (click)="setAsDefault($event)" *ngIf="buttonMessage">Lokalizacja ustawiona jako domyślna!</button>
     <select class="form-control" id="localisation-selection" name="localisation-select" (change)="onSubmit($event)">
       <option>Wybierz lokalizacje</option>
       <option *ngFor="let localisation of localArr" [value]="localisation._id">{{localisation.Lokalizacja_Opis}}</option>

@@ -20,6 +20,9 @@ export class CardComponent implements OnInit {
   private time;
   private windDirection;
   private indexData;
+  private indexDataStorage;
+  private buttonMessage = false;
+  private buttonDisable = false;
 
   constructor(private http: HttpService) { }
 
@@ -32,32 +35,57 @@ export class CardComponent implements OnInit {
         for(let i=0; i<data.body.result.records.length; i++){
           this.localArr.push(data.body.result.records[i]) 
         }
-
         /* Delete record from Widawska street, since it wasn't updated for long time */
         this.localArr.splice(0,1);
         console.log(this.localArr)
 
-        this.temperature = this.localArr[0].T_Powietrza;
-        console.log(this.temperature);
+        if(localStorage.getItem(this.indexDataStorage) !== undefined){
+          this.buttonDisable = true;
+
+          this.temperature = this.localArr[localStorage.getItem(this.indexDataStorage)].T_Powietrza;
+          console.log(this.temperature);
       
-        this.localisation = this.localArr[0].Lokalizacja_Opis;
-        console.log(this.localisation);
+          this.localisation = this.localArr[localStorage.getItem(this.indexDataStorage)].Lokalizacja_Opis;
+          console.log(this.localisation);
 
-        this.rain = this.localArr[0].Opad_Typ;
-        console.log(this.rain);
+          this.rain = this.localArr[localStorage.getItem(this.indexDataStorage)].Opad_Typ;
+          console.log(this.rain);
 
-        this.terrainTemperature = this.localArr[0].T_Grunt;
-        console.log(this.terrainTemperature);
+          this.terrainTemperature = this.localArr[localStorage.getItem(this.indexDataStorage)].T_Grunt;
+          console.log(this.terrainTemperature);
 
-        this.wetness = this.localArr[0].Wilgotnosc;
-        console.log(this.wetness);
+          this.wetness = this.localArr[localStorage.getItem(this.indexDataStorage)].Wilgotnosc;
+          console.log(this.wetness);
 
-        this.time = this.localArr[0].Czas_Rejestracji;
-        console.log(this.time);
+          this.time = this.localArr[localStorage.getItem(this.indexDataStorage)].Czas_Rejestracji;
+          console.log(this.time);
 
-        this.windDirection = this.localArr[0].Wiatr_Kierunek;
-        console.log(this.windDirection);
+          this.windDirection = this.localArr[localStorage.getItem(this.indexDataStorage)].Wiatr_Kierunek;
+          console.log(this.windDirection);
+        } else {
+          this.temperature = this.localArr[0].T_Powietrza;
+          console.log(this.temperature);
+        
+          this.localisation = this.localArr[0].Lokalizacja_Opis;
+          console.log(this.localisation);
+  
+          this.rain = this.localArr[0].Opad_Typ;
+          console.log(this.rain);
+  
+          this.terrainTemperature = this.localArr[0].T_Grunt;
+          console.log(this.terrainTemperature);
+  
+          this.wetness = this.localArr[0].Wilgotnosc;
+          console.log(this.wetness);
+  
+          this.time = this.localArr[0].Czas_Rejestracji;
+          console.log(this.time);
+  
+          this.windDirection = this.localArr[0].Wiatr_Kierunek;
+          console.log(this.windDirection);
 
+          this.buttonDisable = false;
+        }
       } else {
         console.error('Server response code: ' + data.status)
       }
@@ -70,6 +98,7 @@ export class CardComponent implements OnInit {
     console.log(event.target.selectedIndex);
     this.http.getValues().subscribe((data:any) => {
       if(data.status === 200){
+
         console.log('Server response code :' + data.status)
         /* Clear localArr array for fresh weather data */
         this.localArr.splice(0, this.localArr.length);
@@ -105,10 +134,29 @@ export class CardComponent implements OnInit {
 
         this.windDirection = this.localArr[this.indexData].Wiatr_Kierunek;
         console.log(this.windDirection);
+                
+        /* set button on, as default option, before checking with localisation */
+        this.buttonDisable = false;
+
+        /* Check if current localisation is default and if so, disable button */
+        if(this.indexData == localStorage.getItem(this.indexDataStorage)){
+          console.log('thats, true');
+          this.buttonDisable = true;
+        }
       } else {
           console.log('Sever response code: ' + data.status)
       }
     })
   }
 
+  setAsDefault(event){
+      localStorage.setItem(this.indexDataStorage, this.indexData);
+      console.log(localStorage.getItem(this.indexDataStorage));
+      this.buttonMessage = !this.buttonMessage;
+      setTimeout(() => {
+        this.buttonMessage = !this.buttonMessage;
+      }, 2000);
+      /* Disable button */
+      this.buttonDisable = true;
+  }
 }
