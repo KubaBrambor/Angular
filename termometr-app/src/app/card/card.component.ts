@@ -10,21 +10,23 @@ import { HttpService } from '../services/http-service.service';
 })
 export class CardComponent implements OnInit {
 
-  private logo = require('../../assets/logo.jpg');
-  private localArr = [];
-  private temperature;
-  private localisation;
-  private rain;
-  private terrainTemperature;
-  private wetness;
-  private time;
-  private windDirection;
-  private indexData;
-  private indexDataStorage;
-  private buttonMessage = false;
-  private buttonDisable = false;
+  public logo = require('../../assets/logo.jpg');
+  public localArr = [];
+  public temperature;
+  public localisation;
+  public rain;
+  public terrainTemperature;
+  public wetness;
+  public time;
+  public windDirection;
+  public indexData;
+  public indexDataStorage;
+  public indexFound = false;
+  public buttonMessage = false;
+  public buttonDisable = false;
 
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpService) {
+   }
 
   ngOnInit() {
     /* Get data from API for Lotnicza localisation, as default. */
@@ -34,12 +36,15 @@ export class CardComponent implements OnInit {
         console.warn('Server response code: ' + data.status)
         for(let i=0; i<data.body.result.records.length; i++){
           this.localArr.push(data.body.result.records[i]) 
+          if(this.localArr[i]._id == localStorage.getItem(this.indexDataStorage)){
+            this.indexFound = true;
+          }
         }
         /* Delete record from Widawska street, since it wasn't updated for long time */
         this.localArr.splice(0,1);
         console.log(this.localArr)
 
-        if(localStorage.getItem(this.indexDataStorage) !== undefined){
+        if(this.indexFound){
           this.buttonDisable = true;
 
           this.temperature = this.localArr[localStorage.getItem(this.indexDataStorage)].T_Powietrza;
