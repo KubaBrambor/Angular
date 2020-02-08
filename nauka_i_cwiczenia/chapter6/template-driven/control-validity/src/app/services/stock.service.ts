@@ -56,4 +56,8 @@ export class StockService {
     return this.http.patch<Stock>('/api/stock/' + stock.code, {favorite: !stock.favorite});
   }
 
+  makeFailingCall() {
+    return this.http.get('/api/fail');
+  }
+
 }
