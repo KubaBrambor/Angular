@@ -42,14 +42,18 @@ export class StockListComponent implements OnInit {
 
   fetchStocks() {
     this.stocks$ = this.stockService.getStocks();
+    console.log('asdad')
   }
 
   setAuthToken() {
+    console.log(this.authService.authToken)
     this.authService.authToken = 'TESTING';
+    console.log(this.authService.authToken)
   }
 
   resetAuthToken() {
     this.authService.authToken = null;
+    console.log('RESET')
   }
 
   makeFailingCall() {

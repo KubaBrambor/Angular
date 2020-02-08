@@ -13,15 +13,7 @@ export class StockService {
   }
 
   getStocks(): Observable<Stock[]> {
-    return this.http.get<Stock[]>('/api/stock', {
-      headers: new HttpHeaders()
-        .set('Authorization', 'MyAuthorizationHeaderValue')
-        .set('X-EXAMPLE-HEADER', 'TestValue'),
-      params: new HttpParams()
-        .set('q', 'last')
-        .set('test', 'value'),
-      observe: 'body'
-    });
+    return this.http.get<Stock[]>('/api/stock')
   }
 
   getStocksResponse(): Observable<HttpResponse<Stock[]>> {
