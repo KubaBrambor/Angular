@@ -3,6 +3,13 @@ import { Stock } from '../../model/stock';
 import { StockService } from 'app/services/stock.service';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from 'app/services/auth.service';
+
+import { from } from 'rxjs/observable/from';
+import { share } from 'rxjs/operators';
+import { Subject } from 'rxjs/Subject';
+import { debounceTime, switchMap, distinctUntilChanged, startWith } from 'rxjs/operators';
+import { start } from 'repl';
+
 @Component({
   selector: 'app-stock-list',
   templateUrl: './stock-list.component.html',
@@ -11,14 +18,21 @@ import { AuthService } from 'app/services/auth.service';
 export class StockListComponent implements OnInit {
 
   public stocks$: Observable<Stock[]>;
+  public searchString: string = '';
+  private searchTerms: Subject<string> = new Subject();
 
   constructor(private stockService: StockService,
               private authService: AuthService) { }
 
   ngOnInit() {
-    this.fetchStocks();
 
-    this.stocks$ = this.stockService.getStocks();
+    this.stocks$ = this.searchTerms.pipe(
+      startWith(this.searchString),
+      debounceTime(500),
+      distinctUntilChanged(),
+      switchMap((query) => this.stockService.getStocks(query)),
+      share()
+    );
     this.stocks$.subscribe(stocks => {console.log(stocks);
     console.log('showing!')});
 
@@ -40,9 +54,8 @@ export class StockListComponent implements OnInit {
       })
   }
 
-  fetchStocks() {
-    this.stocks$ = this.stockService.getStocks();
-    console.log('asdad')
+  search(){
+    this.searchTerms.next(this.searchString);
   }
 
   setAuthToken() {

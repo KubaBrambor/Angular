@@ -12,8 +12,8 @@ export class StockService {
   constructor(private http: HttpClient) { 
   }
 
-  getStocks(): Observable<Stock[]> {
-    return this.http.get<Stock[]>('/api/stock')
+  getStocks(query: string): Observable<Stock[]> {
+    return this.http.get<Stock[]>(`/api/stock?q=${query}`);
   }
 
   getStocksResponse(): Observable<HttpResponse<Stock[]>> {
