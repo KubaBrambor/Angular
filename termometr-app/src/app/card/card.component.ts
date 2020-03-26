@@ -19,30 +19,43 @@ export class CardComponent implements OnInit {
   public wetness;
   public time;
   public windDirection;
+  public windV;
   public indexData;
   public indexDataStorage;
   public indexFound = false;
   public buttonMessage = false;
   public buttonDisable = false;
+  public httpCheck;
 
   constructor(private http: HttpService) {
    }
 
   ngOnInit() {
+    this.httpCheck = this.http.getValues()
     /* Get data from API for Lotnicza localisation, as default. */
     this.http.getValues().subscribe((data:any) => {
 
       if(data.status === 200){
         console.warn('Server response code: ' + data.status)
         for(let i=0; i<data.body.result.records.length; i++){
-          this.localArr.push(data.body.result.records[i]) 
-          if(this.localArr[i]._id == localStorage.getItem(this.indexDataStorage)){
+          this.localArr.push(new WeatherObj(data.body.result.records[i]._id,
+                                            data.body.result.records[i].Opad_Typ,
+                                            data.body.result.records[i].Lokalizacja_Opis,
+                                            data.body.result.records[i].Wilgotnosc,
+                                            data.body.result.records[i].T_Grunt,
+                                            data.body.result.records[i].Wiatr_V,
+                                            data.body.result.records[i].Czas_Rejestracji,
+                                            data.body.result.records[i].T_Powietrza,
+                                            data.body.result.records[i].Wiatr_Kierunek))
+          // this.localArr.push(data.body.result.records[i]) 
+          if(localStorage.getItem(this.indexDataStorage)){
             this.indexFound = true;
           }
         }
         /* Delete record from Widawska street, since it wasn't updated for long time */
         this.localArr.splice(0,1);
         console.log(this.localArr)
+        console.log(data.body.result.records[1].T_Powietrza)
 
         if(this.indexFound){
           this.buttonDisable = true;
@@ -67,6 +80,10 @@ export class CardComponent implements OnInit {
 
           this.windDirection = this.localArr[localStorage.getItem(this.indexDataStorage)].Wiatr_Kierunek;
           console.log(this.windDirection);
+
+          this.windV = this.localArr[localStorage.getItem(this.indexDataStorage)].Wiatr_V;
+          console.log(this.windV);
+
         } else {
           this.temperature = this.localArr[0].T_Powietrza;
           console.log(this.temperature);
@@ -95,6 +112,7 @@ export class CardComponent implements OnInit {
         console.error('Server response code: ' + data.status)
       }
     })
+    return this.http.getValues();
   }
 
   /* Function that is triggered when selected localisation.
@@ -164,4 +182,7 @@ export class CardComponent implements OnInit {
       /* Disable button */
       this.buttonDisable = true;
   }
+  
 }
+
+

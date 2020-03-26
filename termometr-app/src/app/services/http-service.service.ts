@@ -21,7 +21,7 @@ export class HttpService {
   constructor(private http: HttpClient) { }
 
   getValues(): Observable<HttpResponse<WeatherObj[]>>{
-    return this.http.get<WeatherObj[]>(this.proxyUrl + this.url, {
+    return this.http.get<WeatherObj[]>('https://cors-anywhere.herokuapp.com/https://www.wroclaw.pl/open-data/api/action/datastore_search?resource_id=9d5b2336-6f9a-4fa0-8cbe-d6b4776194c3&limit=5', {
       observe: 'response'
     })
   }

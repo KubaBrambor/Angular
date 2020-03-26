@@ -1,12 +1,17 @@
 import { TestBed } from '@angular/core/testing';
+import { HttpClient, HttpHeaders, HttpResponse, HttpHandler } from '@angular/common/http'
+import { HttpService } from './http-service.service';
 
-import { HttpServiceService } from './http-service.service';
-
-describe('HttpServiceService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+describe('HttpService', () => {
+  beforeEach(() => TestBed.configureTestingModule({
+    providers: [
+      HttpClient, 
+      HttpHandler
+    ]
+  }));
 
   it('should be created', () => {
-    const service: HttpServiceService = TestBed.get(HttpServiceService);
+    const service: HttpService = TestBed.get(HttpService);
     expect(service).toBeTruthy();
   });
 });
