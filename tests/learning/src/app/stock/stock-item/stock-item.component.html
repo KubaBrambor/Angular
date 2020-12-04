@@ -1,0 +1,9 @@
+<p>stock-item works!</p>
+<div class="stock-container">
+    <h1>{{name}}</h1>
+    <h5>{{code}}</h5>
+    <h3 [class]="positiveChange ? 'positive' : 'negative'">{{prize}}</h3>
+    <button (click)="addToFavourite()" [disabled]="toggleFavourite">Add</button>
+</div>
+
+
