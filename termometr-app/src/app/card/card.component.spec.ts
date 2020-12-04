@@ -28,37 +28,47 @@ describe('CardComponent', () => {
     httpBackend = backend;
     fixture = TestBed.createComponent(CardComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
-  
+
+    
+    component.ngOnInit()
     httpBackend.expectOne({
       url: 'https://cors-anywhere.herokuapp.com/https://www.wroclaw.pl/open-data/api/action/datastore_search?resource_id=9d5b2336-6f9a-4fa0-8cbe-d6b4776194c3&limit=5',
       method: 'GET'
     }, 'Get weather object').flush({
-    id: 1,
-    opadTyp: 'Brak_opadu',
-    lokalizacja: 'ul. Lotnicza',
-    wilgotnosc: '98%',
-    tGrunt: '2.00',
-    wiatrV: '220',
-    czasRejestracji: '25.03.2020',
-    tPowietrza: '3.00',
-    wiatrKierunek: '250'
+      data:{
+        body:{
+          result:{
+            records:[{
+              _id: 1,
+              Opad_Typ: 'Brak_opadu',
+              Lokalizacja_Opis: 'ul. Lotnicza',
+              Wilgotnosc: '98%',
+              T_Grunt: '2.00',
+              Wiatr_V: '220',
+              Czas_Rejestracji: '25.03.2020',
+              T_Powietrza: '3.00',
+              Wiatr_Kierunek: '250'
+            }]
+          }
+        }
+      }
     });
+    fixture.detectChanges();
   }));
   
   it('should create the app', () => {
     expect(component).toBeTruthy();
     expect(component.httpCheck).toBeTruthy();
+    
   });
 
   // it('should load array from real service on init', 
   //   async(() => {
-  //   expect(component).toBeTruthy();
-  //   expect(component.temperature).toBeTruthy()
 
-  //   // fixture.whenStable().then(() => {
-  //   //   fixture.detectChanges();
-  //   // });
+  //   fixture.whenStable().then(() => {
+  //     expect(component.httpCheck).toBeTruthy();
+  //     fixture.detectChanges();
+  //   });
   // }));
 
   afterEach(() => {
