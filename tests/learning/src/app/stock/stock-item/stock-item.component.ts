@@ -24,8 +24,8 @@ export class StockItemComponent implements OnInit {
     this.toggleFavourite = false;
   }
 
-  addToFavourite() {
-    console.log("Added to favourite stocks!")
+  addToFavourite(event) {
+    console.log("Added to favourite stocks! ", event.target)
     this.toggleFavourite = !this.toggleFavourite;
   }
 
