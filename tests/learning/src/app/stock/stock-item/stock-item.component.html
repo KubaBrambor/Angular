@@ -1,9 +1,9 @@
 <p>stock-item works!</p>
-<div class="stock-container">
-    <h1>{{name}}</h1>
-    <h5>{{code}}</h5>
-    <h3 [class]="positiveChange ? 'positive' : 'negative'">{{prize}}</h3>
-    <button (click)="addToFavourite($event)" [disabled]="toggleFavourite">Add</button>
+<div class="stock" id="0">
+    <h1>{{stock.name}}</h1>
+    <h5>{{stock.code}}</h5>
+    <h3 [ngClass]="stockClasses">{{stock.prize}}</h3>
+    <button (click)="stock.toggleFavourite()" [disabled]="stock.favourite">Add</button>
 </div>
 
 

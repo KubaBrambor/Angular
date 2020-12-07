@@ -1,4 +1,4 @@
-.stock-container {
+.stock, .obligacje {
     border: solid 2px black;
     border-radius: 5px;
     display: inline-block;
@@ -12,4 +12,12 @@
 
 .negative {
     color: red;
+}
+
+.large-change {
+    font-size: 25px;
+}
+
+.samll-change {
+    font-size: 10px;
 }

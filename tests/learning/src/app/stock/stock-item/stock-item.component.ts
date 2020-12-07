@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Stock, Obligacje } from '../../model/stock';
 
 @Component({
   selector: 'app-stock-item',
@@ -6,27 +7,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./stock-item.component.css']
 })
 export class StockItemComponent implements OnInit {
-  public name: string
-  public code: string
-  public prize: number
-  public previousPrize: number
-  public positiveChange: boolean
-  public toggleFavourite: boolean
-
+  public stock: Stock;
+  public obligacje: Obligacje;
+  public stocks: any[];
+  public stockClasses: {};
   constructor() { }
 
   ngOnInit(): void {
-    this.name = "Company One";
-    this.code = "CMO";
-    this.prize = 20;
-    this.previousPrize = 15;
-    this.positiveChange = this.prize >= this.previousPrize;
-    this.toggleFavourite = false;
+    this.stock = new Stock('Company One', 'CMO', 20, 24);
+    this.obligacje = new Obligacje('CD Projekt Red', 'CDP', 40, 1, 'Polska')
+    this.stocks = [this.stock, this.obligacje];
+    let diff = (this.stock.prize/this.stock.previousPrize) - 1;
+    let largeChange = Math.abs(diff) > 0.4;
+    this.stockClasses = {
+      "positive": this.stock.isPositiveChange(),
+      "negative": !this.stock.isPositiveChange(),
+      "large-change": largeChange,
+      "small-change": !largeChange
+    };
   }
 
   addToFavourite(event) {
-    console.log("Added to favourite stocks! ", event.target)
-    this.toggleFavourite = !this.toggleFavourite;
+    console.log("Stock added to favourite!", this.stocks[event.path[1].id])
+    this.stocks[event.path[1].id].favourite = !this.stocks[event.path[1].id].favourite;
   }
-
 }
