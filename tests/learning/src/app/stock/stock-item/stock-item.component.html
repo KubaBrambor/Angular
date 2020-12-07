@@ -14,9 +14,10 @@
 <div class="stock" id="0">
     <h1>{{stock.name}}</h1>
     <h5>{{stock.code}}</h5>
-    <h3 
-        [class.positive]="stock.isPositiveChange()"
-        [class.negative]="!stock.isPositiveChange()">
+    <h3 [class.positive]="stock.isPositiveChange()"
+        [class.negative]="!stock.isPositiveChange()"
+        [class.large-change]="largeChange"
+        [class.small-change]="!largeChange">
             {{stock.prize}}
     </h3>
     <button (click)="stock.toggleFavourite()" [disabled]="stock.favourite">Add</button>
