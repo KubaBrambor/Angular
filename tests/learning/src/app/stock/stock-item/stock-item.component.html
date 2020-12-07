@@ -2,7 +2,23 @@
 <div class="stock" id="0">
     <h1>{{stock.name}}</h1>
     <h5>{{stock.code}}</h5>
+    <h3 [ngStyle]="stockStyles">{{stock.prize}}</h3>
+    <button (click)="stock.toggleFavourite()" [disabled]="stock.favourite">Add</button>
+</div>
+<div class="stock" id="0">
+    <h1>{{stock.name}}</h1>
+    <h5>{{stock.code}}</h5>
     <h3 [ngClass]="stockClasses">{{stock.prize}}</h3>
+    <button (click)="stock.toggleFavourite()" [disabled]="stock.favourite">Add</button>
+</div>
+<div class="stock" id="0">
+    <h1>{{stock.name}}</h1>
+    <h5>{{stock.code}}</h5>
+    <h3 
+        [class.positive]="stock.isPositiveChange()"
+        [class.negative]="!stock.isPositiveChange()">
+            {{stock.prize}}
+    </h3>
     <button (click)="stock.toggleFavourite()" [disabled]="stock.favourite">Add</button>
 </div>
 
