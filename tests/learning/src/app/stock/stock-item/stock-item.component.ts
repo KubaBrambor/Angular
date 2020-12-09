@@ -16,25 +16,35 @@ export class StockItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.stock = new Stock('Company One', 'CMO', 20, 19);
-    this.obligacje = new Obligacje('CD Projekt Red', 'CDP', 40, 1, 'Polska')
-    this.stocks = [this.stock, this.obligacje];
-    let diff = (this.stock.prize/this.stock.previousPrize) - 1;
-    this.largeChange = Math.abs(diff) > 0.4;
-    this.stockStyles = {
-      "color": this.stock.isPositiveChange() ? "green" : "red",
-      "font-size": this.largeChange ? "25px" : "5px"
-    };
-    this.stockClasses = {
-      "positive": this.stock.isPositiveChange(),
-      "negative": !this.stock.isPositiveChange(),
-      "large-change": this.largeChange,
-      "small-change": !this.largeChange
-    }
+    this.stocks = [
+      new Stock('CD Projekt Red', 'CDP', 40, 35),
+      new Stock('Techland', 'TCH', 25, 10),
+      new Stock('KGHM', 'KGH', 15, 30)
+    ];
+    
+    // this.stockStyles = {
+    //   "color": this.stock.isPositiveChange() ? "green" : "red",
+    //   "font-size": this.largeChange ? "25px" : "5px"
+    // };
+    
   }
 
-  addToFavourite(event) {
-    console.log("Stock added to favourite!", this.stocks[event.path[1].id])
-    this.stocks[event.path[1].id].favourite = !this.stocks[event.path[1].id].favourite;
+  addToFavourite(event, i) {
+    console.log("Stock added to favourite!", this.stocks[i])
+    this.stocks[i].favourite = !this.stocks[i].favourite;
+  }
+  stockClassesFunc(i){
+    this.stockClasses = {
+      "positive": this.stocks[i].isPositiveChange(),
+      "negative": !this.stocks[i].isPositiveChange(),
+      "large-change": this.largeChangeFunc(i),
+      "small-change": !this.largeChangeFunc(i)
+    }
+    return this.stockClasses;
+  }
+  largeChangeFunc(i){
+    let diff = (this.stocks[i].prize/this.stocks[i].previousPrize) - 1;
+    this.largeChange = Math.abs(diff) > 0.4;
+    return this.largeChange;
   }
 }

@@ -1,11 +1,12 @@
 <p>stock-item works!</p>
-<div class="stock" id="0">
+<div class="stock" id="0"
+    *ngFor="let stock of stocks; index as i">
     <h1>{{stock.name}}</h1>
     <h5>{{stock.code}}</h5>
-    <h3 [ngStyle]="stockStyles">{{stock.prize}}</h3>
-    <button (click)="stock.toggleFavourite()" [disabled]="stock.favourite">Add</button>
+    <h3 [ngClass]="stockClassesFunc(i)">{{stock.prize}}</h3>
+    <button (click)="addToFavourite($event, i)" *ngIf="!stock.favourite">Add</button>
 </div>
-<div class="stock" id="0">
+<!-- <div class="stock" id="0">
     <h1>{{obligacje.name}}</h1>
     <h5>{{obligacje.code}}</h5>
     <h3 [ngClass]="stockClasses">{{obligacje.prize}}</h3>
@@ -21,6 +22,6 @@
             {{stock.prize}}
     </h3>
     <button (click)="stock.toggleFavourite()" [disabled]="stock.favourite">Add</button>
-</div>
+</div> -->
 
 
