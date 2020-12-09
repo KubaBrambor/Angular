@@ -6,10 +6,10 @@
     <button (click)="stock.toggleFavourite()" [disabled]="stock.favourite">Add</button>
 </div>
 <div class="stock" id="0">
-    <h1>{{stock.name}}</h1>
-    <h5>{{stock.code}}</h5>
-    <h3 [ngClass]="stockClasses">{{stock.prize}}</h3>
-    <button (click)="stock.toggleFavourite()" [disabled]="stock.favourite">Add</button>
+    <h1>{{obligacje.name}}</h1>
+    <h5>{{obligacje.code}}</h5>
+    <h3 [ngClass]="stockClasses">{{obligacje.prize}}</h3>
+    <button (click)="obligacje.toggleFavourite()" *ngIf="!obligacje.favourite">Add</button>
 </div>
 <div class="stock" id="0">
     <h1>{{stock.name}}</h1>
