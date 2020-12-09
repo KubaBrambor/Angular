@@ -47,4 +47,7 @@ export class StockItemComponent implements OnInit {
     this.largeChange = Math.abs(diff) > 0.4;
     return this.largeChange;
   }
+  trackByFunc(index, item){
+    return item.name;
+  }
 }
