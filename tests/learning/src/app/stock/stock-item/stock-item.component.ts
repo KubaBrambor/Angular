@@ -48,6 +48,6 @@ export class StockItemComponent implements OnInit {
     return this.largeChange;
   }
   trackByFunc(index, item){
-    return item.name;
+    return item.code;
   }
 }
