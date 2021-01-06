@@ -1,3 +1,4 @@
 <app-stock-item [stocks]="stockObj" (toggleFavourite)="onToggleFavourite($event)"></app-stock-item>
-
+<button (click)="changeStockObject()">Change Stock</button>
+<button (click)="changeStockPrice()">Change Price</button>
 <router-outlet></router-outlet>

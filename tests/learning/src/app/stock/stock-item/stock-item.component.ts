@@ -5,7 +5,7 @@ import { Stock, Obligacje } from '../../model/stock';
   selector: 'app-stock-item',
   templateUrl: './stock-item.component.html',
   styleUrls: ['./stock-item.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class StockItemComponent implements OnInit {
   public stock: Stock;

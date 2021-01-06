@@ -25,4 +25,16 @@ export class AppComponent {
     console.dir(this.stockObj[i])
   }
 
+  changeStockObject(){
+    this.stockObj = [
+      new Stock('Orlen', 'ORL', 100, 20)
+    ]
+    // this.stockObj.push(new Stock('Orlen', 'ORL', 80, 40))
+    // console.log(this.stockObj)
+  }
+  changeStockPrice(){
+    for(let stock of this.stockObj){
+      stock.prize += 10;
+    }
+  }
 }
