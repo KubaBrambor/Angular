@@ -1,26 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Stock, Obligacje } from '../../model/stock';
 
 @Component({
   selector: 'app-stock-item',
   templateUrl: './stock-item.component.html',
-  styleUrls: ['./stock-item.component.css']
+  styleUrls: ['./stock-item.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StockItemComponent implements OnInit {
   public stock: Stock;
   public obligacje: Obligacje;
-  public stocks: any[];
+  @Input() public stocks: Stock[];
+  @Output() public toggleFavourite:EventEmitter<number>;
   public stockStyles: {};
   public stockClasses: {};
   public largeChange: boolean;
-  constructor() { }
+
+  constructor() { 
+    this.toggleFavourite = new EventEmitter<number>();
+  }
 
   ngOnInit(): void {
-    this.stocks = [
-      new Stock('CD Projekt Red', 'CDP', 40, 35),
-      new Stock('Techland', 'TCH', 25, 10),
-      new Stock('KGHM', 'KGH', 15, 30)
-    ];
     
     // this.stockStyles = {
     //   "color": this.stock.isPositiveChange() ? "green" : "red",
@@ -31,7 +31,10 @@ export class StockItemComponent implements OnInit {
 
   addToFavourite(event, i) {
     console.log("Stock added to favourite!", this.stocks[i])
-    this.stocks[i].favourite = !this.stocks[i].favourite;
+    this.toggleFavourite.emit(i);
+  }
+  changeStockPrize(i){
+    this.stocks[i].prize += 5;
   }
   stockClassesFunc(i){
     this.stockClasses = {

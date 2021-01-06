@@ -5,6 +5,7 @@
     <h5>{{stock.code}}</h5>
     <h3 [ngClass]="stockClassesFunc(i)">{{stock.prize}}</h3>
     <button (click)="addToFavourite($event, i)" *ngIf="!stock.favourite">Add</button>
+    <button (click)="changeStockPrize(i)">Change prize</button>
 </div>
 <!-- <div class="stock" id="0">
     <h1>{{obligacje.name}}</h1>
