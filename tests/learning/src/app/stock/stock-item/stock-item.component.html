@@ -1,4 +1,5 @@
 <p class="name">stock-item works!</p>
+<ng-content></ng-content>
 <div class="stock" id="0"
     *ngFor="let stock of stocks; index as i; trackBy: trackByFunc">
     <h1>{{stock.name}}</h1>
@@ -7,6 +8,7 @@
     <button (click)="addToFavourite($event, i)" *ngIf="!stock.favourite">Add</button>
     <button (click)="changeStockPrize(i)">Change prize</button>
 </div>
+
 <!-- <div class="stock" id="0">
     <h1>{{obligacje.name}}</h1>
     <h5>{{obligacje.code}}</h5>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy, OnChanges, SimpleChanges } from '@angular/core';
 import { Stock, Obligacje } from '../../model/stock';
 
 @Component({
@@ -29,6 +29,9 @@ export class StockItemComponent implements OnInit {
     
   }
 
+  ngOnChanges(changes: SimpleChanges):void {
+    console.log('Stock item component - on changes', changes)
+  }
   addToFavourite(event, i) {
     console.log("Stock added to favourite!", this.stocks[i])
     this.toggleFavourite.emit(i);

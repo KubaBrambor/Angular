@@ -34,10 +34,8 @@ export class AppComponent {
     // this.stockObj.push(new Stock('Orlen', 'ORL', 80, 40))
     // console.log(this.stockObj)
   }
-  changeStockPrice(){
-    for(let stock of this.stockObj){
-      stock.prize += 10;
-    }
+  changeStockPrice(i){
+    console.log(i)
   }
 
   ngAfterViewInit():void {
