@@ -34,7 +34,7 @@ export class StockItemComponent implements OnInit {
     this.toggleFavourite.emit(i);
   }
   changeStockPrize(i){
-    this.stocks[i].prize += 5;
+    this.stocks[i].prize += 5
   }
   stockClassesFunc(i){
     this.stockClasses = {

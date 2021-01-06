@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { SimpleChanges, OnChanges, OnDestroy, DoCheck, AfterViewChecked, AfterViewInit, AfterContentChecked, AfterContentInit } from '@angular/core';
 import { Stock } from '../app/model/stock';
 
 @Component({
@@ -12,6 +13,7 @@ export class AppComponent {
   public stockObj: Stock[]
 
   ngOnInit():void {
+    console.log('App component - ng onit')
     this.stockObj = [
       new Stock('CD Projekt Red', 'CDP', 40, 35),
       new Stock('Techland', 'TCH', 25, 10),
@@ -36,5 +38,33 @@ export class AppComponent {
     for(let stock of this.stockObj){
       stock.prize += 10;
     }
+  }
+
+  ngAfterViewInit():void {
+    console.log('App component - after view init')
+  }
+
+  ngAfterViewChecked():void {
+    console.log('App component - after view checked')
+  }
+
+  ngAfterContentInit():void {
+    console.log('App component - after content init')
+  }
+
+  ngAfterContentChecked():void {
+    console.log('App component - after content checked')
+  }
+
+  ngDoCheck():void {
+    console.log('App componnet - do check')
+  }
+
+  ngOnDestroy():void {
+    console.log('App component - on destroy')
+  }
+
+  ngOnChanges(changes: SimpleChanges):void{
+    console.log('App component - on changes - ', changes)
   }
 }
